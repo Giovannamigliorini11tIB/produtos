@@ -66,6 +66,7 @@ li {
     flex-direction: column;
     justify-content: space-between;
     height: 140px;
+    position: relative;
 }
 
 li:hover {
@@ -88,4 +89,27 @@ li:hover {
     align-self: flex-start;
     padding: 4px 12px;
     border-radius: 6px;
+}
+
+/* Estilo do botão de apagar */
+.btn-apagar {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: transparent;
+    color: #9ca3af; /* Cinza discreto */
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+}
+
+.btn-apagar:hover {
+    background-color: #fee2e2; /* Fundo vermelho bem claro */
+    color: #ef4444; /* Ícone vermelho de destaque */
 }

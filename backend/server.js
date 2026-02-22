@@ -33,6 +33,16 @@ app.post('/produtos', (req, res) => {
     })
 })
 
+app.delete('/produtos/:id', (req, res) => {
+    const sql = 'DELETE FROM produtosGi WHERE id = ?'
+    const id = req.params.id
+
+    db.query(sql, [id], (err, data) => {
+        if (err) return res.json(err)
+        return res.json('Produto deletado com sucesso')
+    })
+})
+
 app.listen(8081, () => {
     console.log('Servidor rodando')
 })
