@@ -13,6 +13,7 @@ const db = mysql.createConnection({
     database: 'web_03mb'
 })
 
+// Rota de LEITURA (GET)
 app.get('/produtos', (req, res) => {
     const sql = 'SELECT * FROM produtosGi'
     db.query(sql, (err, data) => {
@@ -21,6 +22,7 @@ app.get('/produtos', (req, res) => {
     })
 })
 
+// Rota de CRIAÇÃO (POST)
 app.post('/produtos', (req, res) => {
     const sql = 'INSERT INTO produtosGi (nome, preco) VALUES (?)'
     const values = [
@@ -33,6 +35,24 @@ app.post('/produtos', (req, res) => {
     })
 })
 
+// Rota de ATUALIZAÇÃO (PUT)
+app.put('/produtos/:id', (req, res) => {
+    const sql = 'UPDATE produtosGi SET nome = ?, preco = ? WHERE id = ?'
+    const id = req.params.id
+    // Nota: Passamos as variáveis na exata ordem das interrogações (?) no SQL
+    const values = [
+        req.body.nome,
+        req.body.preco,
+        id
+    ]
+
+    db.query(sql, values, (err, data) => {
+        if (err) return res.json(err)
+        return res.json('Produto atualizado com sucesso')
+    })
+})
+
+// Rota de EXCLUSÃO (DELETE)
 app.delete('/produtos/:id', (req, res) => {
     const sql = 'DELETE FROM produtosGi WHERE id = ?'
     const id = req.params.id
